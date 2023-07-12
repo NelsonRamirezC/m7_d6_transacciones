@@ -42,7 +42,7 @@ export default class Transaccion {
             }
         });
     }
-
+    
     static tranferir(
         rutRemitente,
         rutDestinatario,
