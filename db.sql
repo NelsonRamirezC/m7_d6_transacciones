@@ -28,3 +28,17 @@ select * from cuentaS;
 
 insert into cuentas values(DEFAULT, 1, '1111-1111', 'Cuenta Corriente', 500000),
 (DEFAULT, 2, '2222-2222', 'Cuenta Corriente', 750000);
+
+
+
+CREATE TABLE TRANSACCIONES(
+	ID SERIAL PRIMARY KEY,
+	FECHA TIMESTAMP NOT NULL DEFAULT NOW(),
+	cuenta_origen VARCHAR(25) NOT NULL REFERENCES CUENTAS(N_CUENTA),
+	rut_remitente VARCHAR(13) NOT NULL REFERENCES usuarios(rut),
+	rut_destinatario VARCHAR(13) NOT NULL REFERENCES usuarios(rut),
+	cuenta_destino VARCHAR(25) NOT NULL REFERENCES CUENTAS(N_CUENTA),
+	tipo_transaccion VARCHAR(50) NOT NULL, 
+	glosa VARCHAR(100),
+	monto NUMERIC(11, 2) NOT NULL CHECK(monto > 0)
+);

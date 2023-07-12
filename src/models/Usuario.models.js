@@ -27,4 +27,22 @@ export default class Usuario {
             }
         });
     }
+
+    static findByRut(rut) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let query = {
+                    text: "SELECT * FROM USUARIOS WHERE rut = $1",
+                    values: [rut],
+                };
+                let resultado = await db.query(query);
+                resolve(resultado.rows[0]);
+            } catch (error) {
+                console.log("Error en findByRut de usuarios: ", error);
+                reject(
+                    "Error al obtener la información de usuarios por rut en la base de datos."
+                );
+            }
+        });
+    }
 }

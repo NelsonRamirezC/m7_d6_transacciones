@@ -1,4 +1,5 @@
 import Cuenta from "../models/Cuenta.models.js"
+
 export const findAll = async (req, res) => {
     try {
         let cuentas = await Cuenta.findAll();
